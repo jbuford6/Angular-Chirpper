@@ -12,12 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
-    next();
-});
+
 
 app.route('/api/chirps')
     .get(function(req, res) {
@@ -36,9 +31,10 @@ app.route('/api/chirps')
                 chirps.push(chirp);
                 fs.writeFile(jsonPath, JSON.stringify(chirps), function(err, success) {
                     if (err) {
-                        res.status(500);
+                        res.sendStatus(500);
                     } else {
-                        res.sendStatus(201);
+                        res.status(201);
+                        res.send(chirp);
                     }
                 });
             }
