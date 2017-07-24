@@ -1,47 +1,87 @@
-angular.module('myApp', ['ngRoute', 'controllers', 'services'])
+angular.module('myApp', ['ngRoute', 'controllers'])
 .config(function($routeProvider) {
     $routeProvider
     .when('/', {
-        templateUrl: '../views/home.html',
+        templateUrl: '../views/list.html',
         controller: 'listController'
+    })
+    .when('/add', {
+        templateUrl: '../views/add.html',
+        controller: 'addController'
+    })
+    .when('/single/:id', {
+        templateUrl: '../views/single.html',
+        controller: 'singleController'
     });
+})
+.run(function($rootScope) {
+    $rootScope.api = 'http://localhost:3000/api/chirps';
 });
 
 angular.module('controllers', [])
-.controller('listController', ['$http', '$scope', '$rootScope', 'myService', function($http, $scope, $rootScope, myService) {
-    $scope.user = '';
-
+.controller('listController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
     $http({
         method: 'GET',
-        url: 'http://localhost:3000/api/chirps'
+        url: $rootScope.api
     })
     .then(function(success) {
-        var chirps = success.data;
-
-        $scope.chirps = chirps;
-    }, function(err) {
-        console.log(err);
+        $scope.chirps = success.data;
     });
 
-    $scope.addChirp = function() {
-        console.log($scope.user);
-        var newChirp = {
-            user: '',
-            message: ''
-        };
-
+    $scope.deleteChirp = function(id) {
         $http({
-            method: 'POST',
-            url: 'http://localhost:3000/api/chirps',
-            data: newChirp
+            method: 'DELETE',
+            url: $rootScope.api + '/one/' + id
         })
         .then(function(success) {
-            $scope.chirps.push(success.data);
+            var chirps = $scope.chirps;
+
+            chirps = chirps.filter(function(chirp) {
+                if (chirp.id !== id) {
+                    return chirp;
+                }
+            });
+
+            $scope.chirps = chirps;
         });
     };
+}])
+.controller('addController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+    $scope.user = '';
+    $scope.message = '';
+
+    $scope.postChirp = function() {
+        if ($scope.user === '' || $scope.message === '') {
+            alert('fill out all fields');
+        } else {
+            var data = {
+                user: $scope.user,
+                message: $scope.message
+            };
+
+            $http({
+                method: 'POST',
+                url: $rootScope.api,
+                data: data
+            })
+            .then(function(success) {
+                console.log(success);
+            });
+        }
+    };
+}])
+.controller('singleController', ['$scope', '$http', '$routeParams', '$rootScope', function($scope, $http, $routeParams, $rootScope) {
+    $http({
+        method: 'GET',
+        url: $rootScope.api + '/one/' + $routeParams.id
+    })
+    .then(function(success) {
+        $scope.chirp = success.data;
+    });
 }]);
 
-angular.module('services', [])
-.service('myService', [function() {
-    this.name = 'this is my name';
-}]);
+
+
+
+
+

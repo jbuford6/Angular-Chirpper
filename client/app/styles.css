@@ -5,4 +5,26 @@ h1{
                0px 2px 1px rgba(0,0,0,0.5),
                2px 2px 2px rgba(0,0,0,0.7),
                0px 0px 3px rgba(0,0,0,0.4);
+    color: blue;
 }
+.chirp {
+    border-left: 6px solid blue;
+    background-color: lightblue;
+    margin: 1em;
+    margin-left: 12em;
+}
+ul {
+    /*list-style-type: none;*/
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #f1f1f1;
+    height: 8em; 
+    position: fixed;
+}
+.sidebar { 
+    margin-top: 100px;
+    position: fixed;
+    height: 3em;
+    background-color: lightblue;
+    }

@@ -1,5 +1,14 @@
+<div class="list-container" style="background-color: grey">
+    
+<h1 class="title" align="center" style="color:blue">Chirpper</h1>
+<p align="middle"><img src="http://www.freemarketmediagroup.com/internet-marketing/wp-content/uploads/2011/11/twitter-bird-chirping-275x275.jpg" alt="Chipper Bird" class="chirpper-bird"></p>
 
-<div ng-repeat="chirp in chirps">
-    <p>{{chirp.user}}</p>
-    <p>{{chirp.message}}</p>
+<div class="chirp" ng-repeat="chirp in chirps">
+    <a ng-href="/#/single/{{ chirp.id }}">
+        <p>id: {{ chirp.id }}</p>
+    </a>
+    <p>User: {{ chirp.user }}</p>
+    <p>Message: {{ chirp.message }}</p>
+    <button ng-click="deleteChirp(chirp.id)">delete this chirp</button>
+</div>
 </div>
