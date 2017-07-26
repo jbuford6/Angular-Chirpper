@@ -12,6 +12,12 @@ angular.module('myApp', ['ngRoute', 'controllers'])
     .when('/single/:id', {
         templateUrl: '../views/single.html',
         controller: 'singleController'
+    })
+    .when('/user', {
+        templateUrl: '../views/user.html',
+        controller: 'userController'
+
+   
     });
 })
 .run(function($rootScope) {
@@ -70,15 +76,34 @@ angular.module('controllers', [])
         }
     };
 }])
-.controller('singleController', ['$scope', '$http', '$routeParams', '$rootScope', function($scope, $http, $routeParams, $rootScope) {
-    $http({
-        method: 'GET',
-        url: $rootScope.api + '/one/' + $routeParams.id
-    })
-    .then(function(success) {
-        $scope.chirp = success.data;
-    });
-}]);
+// .controller('singleController', ['$scope', '$http', '$routeParams', '$rootScope', function($scope, $http, $routeParams, $rootScope) {
+//     $http({
+//         method: 'GET',
+//         url: $rootScope.api + '/one/' + $routeParams.id
+//     })
+//     .then(function(success) {
+//         $scope.chirp = success.data;
+//     });
+// }])
+// .controller('userController', function ($scope, $http, $location){
+//     $http.get("/api/users")
+//     .then(function(success){
+//         console.log(success.data)
+//         $scope.userList = success.data;
+//     });
+
+//     $scope.users = function(user){
+//         $location.path('/users/' + user)
+//     };
+// })
+// .controller('sidebarController',['$scope','$http', function($scope,$http){
+//     $http({
+//         method: 'GET',
+//         url: $rootScope.api + /users (get all users)
+//     })
+// }] )
+
+
 
 
 

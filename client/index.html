@@ -8,17 +8,20 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-resource.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.js"></script>
   </head>
-  <body style= "background-color: gray">
-    <p class= "topbar"></p>
-    <div class="topbar" style="background-color: lightblue">
-    <ul class= "sidebar" style= "background-color: lightblue">
-        <li><a href="http://localhost:3000/#/add">Chirp Something</a>
-        <li><a href="http://localhost:3000/#/">See my Chirps</a>
-        <li><a href="http://localhost:3000/#/api/users">Users</a>
-    </ul>
-    <div ng-view>
-  </div>
+  <body>
+    <div class= "topbar"><p>Chirpper</p></div>
+    <div class="sidebar">
+      <ul>
+          <li><a href="#/add">Chirp Something</a>
+          <li><a href="#/">See my Chirps</a>
+          <li><a href="#/users">Users</a>
+      </ul>
+    <select class="selector" name="users" id="">
+      <option value="hello"></option>
+    </select>
+    </div>
+    <div ng-view></div>
 	  <script src="app/app.js"></script>
   </body>
 </html>
-<style>.topbar{ height: 5em; width: 100%; background-color: lightblue; margin-bottom: 1em; }</style>
+<style>.selector{margin-top: 6rem; }</style>

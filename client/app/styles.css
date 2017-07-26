@@ -1,30 +1,60 @@
-h1{
-    font-size: 26px;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.topbar {
     text-transform: capitalize;
     text-shadow: -1px -1px 1px #aaa,
                0px 2px 1px rgba(0,0,0,0.5),
                2px 2px 2px rgba(0,0,0,0.7),
                0px 0px 3px rgba(0,0,0,0.4);
     color: blue;
+    height: 10rem;  
+    background-color: lightblue; 
+    position: fixed; 
+    width: 100%;
+    text-align: center;
+    margin: 0;
 }
+
+.topbar p {
+    font-size: 26px;
+}
+
+div[ng-view] {
+    background-color: grey;
+    padding-top: 1em;
+    overflow: auto;
+    height: 100vh;
+    width: 80%;
+    float: left;
+    margin-top: 10rem;
+}
+
 .chirp {
     border-left: 6px solid blue;
     background-color: lightblue;
     margin: 1em;
-    margin-left: 12em;
+    margin-left: 4em;
 }
 ul {
-    /*list-style-type: none;*/
     margin: 0;
     padding: 0;
     width: 15%;
-    background-color: #f1f1f1;
     height: 8em; 
     position: fixed;
 }
 .sidebar { 
-    margin-top: 100px;
-    position: fixed;
-    height: 3em;
+    margin-top: 10rem;
+    float: left;
+    width: 20%;
+    height: 100vh;
     background-color: lightblue;
-    }
+}
